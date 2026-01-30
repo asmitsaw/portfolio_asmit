@@ -17,7 +17,6 @@ const ContactDialog = ({ windowId = 'contact' }) => {
   });
   const [showSuccess, setShowSuccess] = useState(false);
   const { closeWindow } = useWindowStore();
-  const RECIPIENT = import.meta.env.VITE_CONTACT_EMAIL || 'you@example.com';
   const [submitting, setSubmitting] = useState(false);
 
   // Handle input change
@@ -30,48 +29,50 @@ const ContactDialog = ({ windowId = 'contact' }) => {
   };
 
   // Handle form submit
-  const handleSubmit = () => {
+  const handleSubmit = async (e) => {
+    e?.preventDefault(); // Handle if it's called from a form submit event
+
     if (!formData.name || !formData.email || !formData.message) {
       alert('Please fill in all fields.');
       return;
     }
 
-    // Try to POST to a server endpoint first (/api/send-email)
-    const payload = {
-      to: RECIPIENT,
-      name: formData.name,
-      email: formData.email,
-      message: formData.message,
-    };
-
     setSubmitting(true);
 
-    fetch('/api/send-email', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    })
-      .then((res) => {
-        if (res.ok) {
-          setShowSuccess(true);
-          setTimeout(() => closeWindow(windowId), 2000);
-        } else {
-          // Fallback to mailto if server endpoint not available
-          fallbackMailto();
-        }
-      })
-      .catch(() => {
-        // If fetch fails (no backend), open user's mail client as fallback
-        fallbackMailto();
-      })
-      .finally(() => setSubmitting(false));
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "d7ff7019-2c29-4b6f-910b-c347e2c9d6f1",
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setShowSuccess(true);
+        setFormData({ name: '', email: '', message: '' });
+        setTimeout(() => closeWindow(windowId), 3000);
+      } else {
+        console.error("Web3Forms Error:", result);
+        alert(`Error: ${result.message || "Something went wrong. Please try again."}`);
+      }
+    } catch (error) {
+      console.error("Submission Error:", error);
+      alert(`Network Error: ${error.message}. Please check your internet connection.`);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
-  const fallbackMailto = () => {
-    const subject = `Contact from ${formData.name}`;
-    const body = `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`;
-    window.location.href = `mailto:${RECIPIENT}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  };
+
 
   // Handle cancel
   const handleCancel = () => {
