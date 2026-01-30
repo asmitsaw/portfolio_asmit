@@ -32,7 +32,6 @@ const RunDialog = ({ windowId = 'run' }) => {
       'explorer': 'projects',
       'links': 'projects',
       'links explorer': 'projects',
-      projects: 'projects',
       'system': 'system',
       'system properties': 'system',
       'control panel': 'system',
