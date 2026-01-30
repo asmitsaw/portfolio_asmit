@@ -1,0 +1,646 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================
+   WINDOWS 98 DESIGN SYSTEM
+   Authentic, pixel-perfect retro styling
+   ========================================== */
+
+@layer base {
+  :root {
+    /* Windows 98 Core Colors */
+    --win98-desktop: 182 50% 40%; /* Classic teal desktop */
+    --win98-gray: 0 0% 75%; /* Window/dialog background */
+    --win98-dark-gray: 0 0% 50%; /* Shadow color */
+    --win98-light-gray: 0 0% 87%; /* Light surfaces */
+    --win98-white: 0 0% 100%; /* Highlight color */
+    --win98-black: 0 0% 0%; /* Text and borders */
+    
+    /* Title Bar Colors */
+    --win98-title-active: 230 70% 30%; /* Active window title */
+    --win98-title-inactive: 0 0% 50%; /* Inactive window title */
+    --win98-title-text: 0 0% 100%; /* Title text */
+    
+    /* Selection Colors */
+    --win98-selection: 230 70% 30%;
+    --win98-selection-text: 0 0% 100%;
+    
+    /* Link Colors */
+    --win98-link: 240 100% 50%;
+    --win98-link-visited: 270 100% 40%;
+    
+    /* Semantic mappings */
+    --background: 182 50% 40%;
+    --foreground: 0 0% 0%;
+    --card: 0 0% 75%;
+    --card-foreground: 0 0% 0%;
+    --popover: 0 0% 75%;
+    --popover-foreground: 0 0% 0%;
+    --primary: 230 70% 30%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 87%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 0 0% 75%;
+    --muted-foreground: 0 0% 30%;
+    --accent: 0 0% 87%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 50%;
+    --input: 0 0% 100%;
+    --ring: 230 70% 30%;
+    --radius: 0px;
+  }
+}
+
+/* Windows 98 Base Styles */
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'MS Sans Serif', 'Segoe UI', Tahoma, sans-serif;
+    font-size: 11px;
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: unset;
+    cursor: default;
+    user-select: none;
+  }
+  
+  /* Custom scrollbars - Windows 98 style */
+  ::-webkit-scrollbar {
+    width: 16px;
+    height: 16px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--win98-light-gray));
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 2px,
+      hsl(var(--win98-gray)) 2px,
+      hsl(var(--win98-gray)) 4px
+    );
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--win98-gray));
+    border-top: 2px solid hsl(var(--win98-white));
+    border-left: 2px solid hsl(var(--win98-white));
+    border-right: 2px solid hsl(var(--win98-dark-gray));
+    border-bottom: 2px solid hsl(var(--win98-dark-gray));
+  }
+  
+  ::-webkit-scrollbar-button {
+    background: hsl(var(--win98-gray));
+    border-top: 2px solid hsl(var(--win98-white));
+    border-left: 2px solid hsl(var(--win98-white));
+    border-right: 2px solid hsl(var(--win98-dark-gray));
+    border-bottom: 2px solid hsl(var(--win98-dark-gray));
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* ==========================================
+   WINDOWS 98 COMPONENT STYLES
+   ========================================== */
+
+@layer components {
+  /* Raised border (default button/window style) */
+  .win98-raised {
+    border-top: 2px solid hsl(var(--win98-white));
+    border-left: 2px solid hsl(var(--win98-white));
+    border-right: 2px solid hsl(var(--win98-dark-gray));
+    border-bottom: 2px solid hsl(var(--win98-dark-gray));
+    background: hsl(var(--win98-gray));
+  }
+  
+  /* Inset border (pressed button, input fields) */
+  .win98-inset {
+    border-top: 2px solid hsl(var(--win98-dark-gray));
+    border-left: 2px solid hsl(var(--win98-dark-gray));
+    border-right: 2px solid hsl(var(--win98-white));
+    border-bottom: 2px solid hsl(var(--win98-white));
+    background: hsl(var(--win98-gray));
+  }
+  
+  /* Window frame outer border */
+  .win98-window-frame {
+    border: 1px solid hsl(var(--win98-black));
+    outline: 1px solid hsl(var(--win98-dark-gray));
+  }
+  
+  /* Button styles */
+  .win98-button {
+    background: hsl(var(--win98-gray));
+    border-top: 2px solid hsl(var(--win98-white));
+    border-left: 2px solid hsl(var(--win98-white));
+    border-right: 2px solid hsl(var(--win98-black));
+    border-bottom: 2px solid hsl(var(--win98-black));
+    padding: 2px 12px;
+    min-width: 75px;
+    font-family: 'MS Sans Serif', Tahoma, sans-serif;
+    font-size: 11px;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .win98-button::after {
+    content: '';
+    position: absolute;
+    right: 1px;
+    bottom: 1px;
+    top: 1px;
+    left: 1px;
+    border-right: 1px solid hsl(var(--win98-dark-gray));
+    border-bottom: 1px solid hsl(var(--win98-dark-gray));
+    pointer-events: none;
+  }
+  
+  .win98-button:active {
+    border-top: 2px solid hsl(var(--win98-black));
+    border-left: 2px solid hsl(var(--win98-black));
+    border-right: 2px solid hsl(var(--win98-white));
+    border-bottom: 2px solid hsl(var(--win98-white));
+    padding: 3px 11px 1px 13px;
+  }
+  
+  .win98-button:active::after {
+    border: none;
+  }
+  
+  .win98-button:focus {
+    outline: 1px dotted hsl(var(--win98-black));
+    outline-offset: -4px;
+  }
+  
+  /* Title bar button (minimize, maximize, close) */
+  .win98-title-button {
+    width: 16px;
+    height: 14px;
+    background: hsl(var(--win98-gray));
+    border-top: 1px solid hsl(var(--win98-white));
+    border-left: 1px solid hsl(var(--win98-white));
+    border-right: 1px solid hsl(var(--win98-black));
+    border-bottom: 1px solid hsl(var(--win98-black));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    position: relative;
+  }
+  
+  .win98-title-button::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-right: 1px solid hsl(var(--win98-dark-gray));
+    border-bottom: 1px solid hsl(var(--win98-dark-gray));
+    pointer-events: none;
+  }
+  
+  .win98-title-button:active {
+    border-top: 1px solid hsl(var(--win98-black));
+    border-left: 1px solid hsl(var(--win98-black));
+    border-right: 1px solid hsl(var(--win98-white));
+    border-bottom: 1px solid hsl(var(--win98-white));
+  }
+  
+  .win98-title-button:active::after {
+    border: none;
+  }
+  
+  /* Input field */
+  .win98-input {
+    background: hsl(var(--win98-white));
+    border-top: 1px solid hsl(var(--win98-dark-gray));
+    border-left: 1px solid hsl(var(--win98-dark-gray));
+    border-right: 1px solid hsl(var(--win98-white));
+    border-bottom: 1px solid hsl(var(--win98-white));
+    padding: 2px 4px;
+    font-family: 'MS Sans Serif', Tahoma, sans-serif;
+    font-size: 11px;
+    outline: none;
+  }
+  
+  .win98-input:focus {
+    outline: none;
+  }
+  
+  /* Menu bar */
+  .win98-menubar {
+    background: hsl(var(--win98-gray));
+    border-bottom: 1px solid hsl(var(--win98-dark-gray));
+    padding: 2px;
+    display: flex;
+    gap: 0;
+  }
+  
+  .win98-menu-item {
+    padding: 2px 6px;
+    cursor: pointer;
+  }
+  
+  .win98-menu-item:hover {
+    background: hsl(var(--win98-selection));
+    color: hsl(var(--win98-selection-text));
+  }
+  
+  /* Toolbar */
+  .win98-toolbar {
+    background: hsl(var(--win98-gray));
+    border-bottom: 1px solid hsl(var(--win98-dark-gray));
+    padding: 2px 4px;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+  
+  .win98-toolbar-button {
+    width: 22px;
+    height: 22px;
+    background: hsl(var(--win98-gray));
+    border: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  
+  .win98-toolbar-button:hover {
+    border-top: 1px solid hsl(var(--win98-white));
+    border-left: 1px solid hsl(var(--win98-white));
+    border-right: 1px solid hsl(var(--win98-dark-gray));
+    border-bottom: 1px solid hsl(var(--win98-dark-gray));
+  }
+  
+  .win98-toolbar-button:active {
+    border-top: 1px solid hsl(var(--win98-dark-gray));
+    border-left: 1px solid hsl(var(--win98-dark-gray));
+    border-right: 1px solid hsl(var(--win98-white));
+    border-bottom: 1px solid hsl(var(--win98-white));
+  }
+  
+  /* Status bar */
+  .win98-statusbar {
+    background: hsl(var(--win98-gray));
+    border-top: 1px solid hsl(var(--win98-dark-gray));
+    padding: 2px 4px;
+    font-size: 11px;
+  }
+  
+  .win98-statusbar-panel {
+    border-top: 1px solid hsl(var(--win98-dark-gray));
+    border-left: 1px solid hsl(var(--win98-dark-gray));
+    border-right: 1px solid hsl(var(--win98-white));
+    border-bottom: 1px solid hsl(var(--win98-white));
+    padding: 1px 4px;
+  }
+  
+  /* Desktop icon */
+  .win98-desktop-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 75px;
+    padding: 2px;
+    cursor: pointer;
+  }
+  
+  .win98-desktop-icon-image {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 2px;
+    image-rendering: pixelated;
+  }
+  
+  .win98-desktop-icon-label {
+    color: hsl(var(--win98-white));
+    text-shadow: 1px 1px 1px hsl(var(--win98-black));
+    font-size: 11px;
+    text-align: center;
+    padding: 1px 2px;
+    word-break: break-word;
+  }
+  
+  .win98-desktop-icon.selected .win98-desktop-icon-label {
+    background: hsl(var(--win98-selection));
+    color: hsl(var(--win98-selection-text));
+    text-shadow: none;
+  }
+  
+  .win98-desktop-icon.selected .win98-desktop-icon-image {
+    filter: brightness(0.7) sepia(1) hue-rotate(180deg) saturate(3);
+  }
+  
+  /* Taskbar */
+  .win98-taskbar {
+    background: hsl(var(--win98-gray));
+    border-top: 2px solid hsl(var(--win98-white));
+    height: 28px;
+    display: flex;
+    align-items: center;
+    padding: 2px;
+  }
+  
+  .win98-start-button {
+    background: hsl(var(--win98-gray));
+    border-top: 2px solid hsl(var(--win98-white));
+    border-left: 2px solid hsl(var(--win98-white));
+    border-right: 2px solid hsl(var(--win98-black));
+    border-bottom: 2px solid hsl(var(--win98-black));
+    padding: 2px 6px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: bold;
+    font-size: 11px;
+    cursor: pointer;
+    height: 22px;
+  }
+  
+  .win98-start-button::after {
+    content: '';
+    position: absolute;
+    right: 1px;
+    bottom: 1px;
+    top: 1px;
+    left: 1px;
+    border-right: 1px solid hsl(var(--win98-dark-gray));
+    border-bottom: 1px solid hsl(var(--win98-dark-gray));
+    pointer-events: none;
+  }
+  
+  .win98-taskbar-button {
+    background: hsl(var(--win98-gray));
+    border-top: 2px solid hsl(var(--win98-white));
+    border-left: 2px solid hsl(var(--win98-white));
+    border-right: 2px solid hsl(var(--win98-black));
+    border-bottom: 2px solid hsl(var(--win98-black));
+    padding: 2px 8px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    cursor: pointer;
+    height: 22px;
+    min-width: 120px;
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    position: relative;
+  }
+  
+  .win98-taskbar-button::after {
+    content: '';
+    position: absolute;
+    right: 1px;
+    bottom: 1px;
+    top: 1px;
+    left: 1px;
+    border-right: 1px solid hsl(var(--win98-dark-gray));
+    border-bottom: 1px solid hsl(var(--win98-dark-gray));
+    pointer-events: none;
+  }
+  
+  .win98-taskbar-button.active {
+    border-top: 2px solid hsl(var(--win98-black));
+    border-left: 2px solid hsl(var(--win98-black));
+    border-right: 2px solid hsl(var(--win98-white));
+    border-bottom: 2px solid hsl(var(--win98-white));
+    background: repeating-linear-gradient(
+      90deg,
+      hsl(var(--win98-white)),
+      hsl(var(--win98-white)) 1px,
+      hsl(var(--win98-gray)) 1px,
+      hsl(var(--win98-gray)) 2px
+    );
+  }
+  
+  .win98-taskbar-button.active::after {
+    border: none;
+  }
+  
+  .win98-system-tray {
+    border-top: 1px solid hsl(var(--win98-dark-gray));
+    border-left: 1px solid hsl(var(--win98-dark-gray));
+    border-right: 1px solid hsl(var(--win98-white));
+    border-bottom: 1px solid hsl(var(--win98-white));
+    padding: 2px 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 20px;
+    font-size: 11px;
+  }
+  
+  /* Link styles */
+  .win98-link {
+    color: hsl(var(--win98-link));
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  .win98-link:visited {
+    color: hsl(var(--win98-link-visited));
+  }
+  
+  .win98-link:hover {
+    color: hsl(var(--win98-link));
+  }
+  
+  /* Divider */
+  .win98-divider {
+    width: 2px;
+    height: 20px;
+    border-left: 1px solid hsl(var(--win98-dark-gray));
+    border-right: 1px solid hsl(var(--win98-white));
+    margin: 0 4px;
+  }
+  
+  /* Progress bar */
+  .win98-progress {
+    height: 16px;
+    background: hsl(var(--win98-gray));
+    border-top: 1px solid hsl(var(--win98-dark-gray));
+    border-left: 1px solid hsl(var(--win98-dark-gray));
+    border-right: 1px solid hsl(var(--win98-white));
+    border-bottom: 1px solid hsl(var(--win98-white));
+    overflow: hidden;
+  }
+  
+  .win98-progress-bar {
+    height: 100%;
+    background: hsl(var(--win98-selection));
+  }
+  
+  /* Textarea */
+  .win98-textarea {
+    background: hsl(var(--win98-white));
+    border-top: 2px solid hsl(var(--win98-dark-gray));
+    border-left: 2px solid hsl(var(--win98-dark-gray));
+    border-right: 2px solid hsl(var(--win98-white));
+    border-bottom: 2px solid hsl(var(--win98-white));
+    padding: 4px;
+    font-family: 'MS Sans Serif', Tahoma, sans-serif;
+    font-size: 11px;
+    resize: none;
+    outline: none;
+  }
+  
+  /* Tab styles */
+  .win98-tab {
+    background: hsl(var(--win98-gray));
+    border-top: 2px solid hsl(var(--win98-white));
+    border-left: 2px solid hsl(var(--win98-white));
+    border-right: 2px solid hsl(var(--win98-black));
+    border-bottom: none;
+    padding: 4px 12px;
+    margin-right: -1px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .win98-tab.active {
+    background: hsl(var(--win98-gray));
+    border-bottom: 2px solid hsl(var(--win98-gray));
+    z-index: 2;
+    margin-bottom: -2px;
+    padding-bottom: 6px;
+  }
+
+  /* Internet Explorer page tweaks */
+  .ie-page {
+    font-family: "Times New Roman", Georgia, serif;
+    max-width: 720px;
+    padding: 16px 24px;
+    margin: 0 auto;
+    color: #000;
+    background: #fff;
+  }
+
+  .ie-rule {
+    border: none;
+    border-top: 1px solid #808080;
+    border-bottom: 1px solid #ffffff;
+    margin: 16px 0;
+  }
+
+  .visitor-counter {
+    display: inline-block;
+    padding: 4px 8px;
+    background: #000;
+    color: #00FF00;
+    font-family: "Courier New", monospace;
+    font-size: 11px;
+    margin: 12px 0;
+    text-align: center;
+  }
+
+  .construction-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    background: #ffffcc;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    margin: 20px 0;
+    font-size: 12px;
+  }
+
+  .favorites-section {
+    margin-bottom: 20px;
+    padding: 12px;
+    border: 1px solid #cccccc;
+    background: #f0f0f0;
+  }
+  
+  .win98-tab-content {
+    background: hsl(var(--win98-gray));
+    border: 2px solid;
+    border-color: hsl(var(--win98-white)) hsl(var(--win98-black)) hsl(var(--win98-black)) hsl(var(--win98-white));
+    padding: 12px;
+  }
+}
+
+/* Boot screen animation */
+@keyframes bootProgress {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.boot-progress-animation {
+  animation: bootProgress 1.5s ease-out forwards;
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Start Menu Styles */
+.win98-start-menu {
+  font-family: 'MS Sans Serif', Tahoma, sans-serif;
+  font-size: 11px;
+}
+
+.win98-submenu {
+  font-family: 'MS Sans Serif', Tahoma, sans-serif;
+  font-size: 11px;
+}
+
+/* Shutdown screen fade animation */
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.win98-shutdown-screen {
+  animation: fade 1.5s ease forwards;
+}
+
+/* CRT effect overlay (subtle) */
+.crt-effect {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  z-index: 10000;
+}
+
+/* Disable text selection for desktop elements */
+.no-select {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* Debug wrapper */
+@layer base {
+  [data-debug-wrapper="true"] {
+    display: contents !important;
+  }
+}
