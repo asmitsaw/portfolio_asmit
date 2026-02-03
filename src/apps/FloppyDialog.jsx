@@ -7,9 +7,9 @@
 import React from 'react';
 import Window from '../components/Window';
 
-const FloppyDialog = () => {
+const FloppyDialog = ({ windowId = 'floppy' }) => {
   return (
-    <Window windowId="floppy" isDialog={true}>
+    <Window windowId={windowId} isDialog={true}>
       <div
         className="h-full flex flex-col p-4"
         style={{ background: 'hsl(var(--win98-gray))' }}
