@@ -10,6 +10,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { useWindowStore } from '../store/windowStore';
 import wallpaper from '../images/wallpaper.png';
+import propertiesIcon from '../images/system-settings-svgrepo-com (2).svg';
 
 // Default desktop icon data (order chosen for better layout)
 const DESKTOP_ICONS = [
@@ -75,7 +76,7 @@ const IconSVG = ({ type }) => {
     case 'properties':
       return (
         <img
-          src="src\images\system-settings-svgrepo-com (2).svg"
+          src={propertiesIcon}
           alt="Properties"
           width={40}
           height={40}
