@@ -1,20 +1,24 @@
-<<<<<<< HEAD
-# React + Vite
+# Windows 98 Portfolio OS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An interactive, retro Windows 98-style operating system simulation built for the browser. This project acts as a creative developer portfolio, showcasing projects, resume, contact details, and technical skills in a nostalgic environment.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+*   **Interactive Desktop**: Drag-and-drop desktop icons, CRT scanline overlay effect, and customizable desktop background.
+*   **Window Manager**: Fully draggable, resizable, minimizable, and maximizable windows utilizing `react-rnd`.
+*   **Start Menu & Taskbar**: Authentic Start Menu with multi-level submenus, and a bottom taskbar with a live system clock and active task buttons.
+*   **Simulated Applications**:
+    *   **WordPad (Resume)**: Interactive resume viewer showing PDF and download controls.
+    *   **Internet Explorer**: A simulated browser displaying external links with security warnings and a classic visitor counter.
+    *   **Command Prompt**: Fully interactive CLI tool featuring history navigation and custom commands.
+    *   **Projects Explorer (D:)**: Organized file explorer displaying portfolio categories and detailed project executables.
+    *   **System Properties**: Retro control panel style listing of programming languages, tools, and funny/realistic system stats.
+    *   **Accessories**: Accessories like Notepad and Calculator.
+    *   **Shutdown Dialog**: Authentic shut down, restart, and log-off screen sequences.
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-=======
-# portfolio_asmit
->>>>>>> cbb1434754d11f465c22afff6aa528ca925cf273
+*   **Frontend**: React (Vite), Tailwind CSS
+*   **State Management**: Zustand
+*   **Window Layout**: `react-rnd`
+*   **Forms**: Web3Forms API integration

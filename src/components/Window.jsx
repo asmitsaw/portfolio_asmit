@@ -188,12 +188,16 @@ const Window = ({
         {/* Menu Bar (optional) */}
         {showMenuBar && menuItems.length > 0 && (
           <div className="win98-menubar">
-            {menuItems.map((item, index) => (
-              <div key={index} className="win98-menu-item">
-                <span style={{ textDecoration: 'underline' }}>{item.charAt(0)}</span>
-                {item.slice(1)}
-              </div>
-            ))}
+            {menuItems.map((item, index) => {
+              const label = typeof item === 'string' ? item : item.label;
+              if (!label) return null;
+              return (
+                <div key={index} className="win98-menu-item">
+                  <span style={{ textDecoration: 'underline' }}>{label.charAt(0)}</span>
+                  {label.slice(1)}
+                </div>
+              );
+            })}
           </div>
         )}
 
